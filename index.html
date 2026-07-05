@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Villa Fotsy · Havre de paix à Antananarivo</title>
+
+  <!-- Polices Google -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="css/style.css">
+  <!-- Icônes Font Awesome 6 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+
+  <!-- ========== CANVAS POUR ÉTOILES / SOLEIL ========== -->
+  <canvas id="starsCanvas"></canvas>
+
+  <!-- ========== LOADER ========== -->
+  <div id="loader" class="loader">
+    <div class="loader-content">
+      <div class="loader-logo-container">
+        <img src="" alt="Logo Villa Fotsy" class="loader-logo" id="loaderLogo">
+        <div id="loaderFallback" class="loader-icon-fallback" style="display:none;">
+          <i class="fas fa-home"></i>
+        </div>
+      </div>
+      <h2 class="loader-title">VILLA FOTSY</h2>
+      <div class="loader-spinner"></div>
+      <p data-lang-fr="Préparation de votre séjour…" data-lang-en="Preparing your stay…">Préparation de votre séjour…</p>
+    </div>
+  </div>
+
+  <!-- Fond dynamique -->
+  <div class="bg-overlay"></div>
+
+  <!-- ========== NAVIGATION ========== -->
+  <nav class="nav" id="navbar">
+    <div class="nav-inner">
+      <!-- Logo à gauche -->
+      <div class="nav-logo">
+        <a href="#hero"><img src="" alt="Logo Villa Fotsy" id="navLogo"></a>
+        <span id="navLogoFallback" style="display:none; font-size:2.5rem; color:var(--gold);"><i class="fas fa-home"></i></span>
+      </div>
+
+      <!-- Liens de navigation (Accueil + autres) -->
+      <div class="nav-links" id="navLinks">
+        <a href="#hero" data-lang-fr="Accueil" data-lang-en="Home">Accueil</a>
+        <a href="#rooms" data-lang-fr="Hébergements" data-lang-en="Accommodations">Hébergements</a>
+        <a href="#services" data-lang-fr="Services" data-lang-en="Services">Services</a>
+        <a href="#gallery" data-lang-fr="Galerie" data-lang-en="Gallery">Galerie</a>
+      </div>
+
+      <!-- Boutons à droite -->
+      <div class="nav-right">
+        <a href="#booking" class="btn-gold" data-lang-fr="Réserver" data-lang-en="Book">Réserver</a>
+        <div class="lang-switch">
+          <button id="btnFr" class="active">FR</button>
+          <span>/</span>
+          <button id="btnEn">EN</button>
+        </div>
+        <button id="modeToggle" class="mode-toggle" aria-label="Changer le mode">
+          <i class="fas fa-moon"></i>
+        </button>
+      </div>
+      <!-- Bouton hamburger pour mobile -->
+      <button class="nav-toggle" id="navToggle" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ========== HERO (image nette + séparateur flou + vidéo) ========== -->
+  <header class="hero" id="hero">
+    <div class="hero-split">
+      <div class="hero-image-blur">
+        <img src="img/villa-photo.jpg" alt="Villa Fotsy" class="hero-img">
+      </div>
+      <div class="hero-separator"></div>
+      <div class="hero-video-wrapper">
+        <video class="hero-video" autoplay loop muted playsinline poster="img/hero-fallback.jpg">
+          <source src="img/villa-portrait.mp4" type="video/mp4">
+        </video>
+      </div>
+    </div>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <div class="hero-text">
+        <div class="hero-clock" id="clock">
+          <span class="time">--:--:--</span>
+          <span class="date">---- -- --</span>
+          <small>Antananarivo, Madagascar</small>
+        </div>
+        <h1 class="hero-title">Villa Fotsy</h1>
+        <p class="hero-tagline" data-lang-fr="« Votre havre de paix secret au cœur d’Antananarivo »" data-lang-en="“Your secret haven of peace in the heart of Antananarivo”">« Votre havre de paix secret au cœur d’Antananarivo »</p>
+        <p class="hero-desc" data-lang-fr="5 chambres de standing · Piscine & jardin · Cinéma privé · Billard & Baby‑foot<br>Idéal pour vos séjours pro ou événements privés (jusqu’à 50 personnes)" data-lang-en="5 luxury bedrooms · Pool & garden · Private cinema · Billiards & Baby‑foot<br>Ideal for business stays or private events (up to 50 people)">5 chambres de standing · Piscine & jardin · Cinéma privé · Billard & Baby‑foot<br>Idéal pour vos séjours pro ou événements privés (jusqu’à 50 personnes)</p>
+        <a href="#booking" class="btn btn-gold" data-lang-fr="Découvrir les disponibilités" data-lang-en="Check availability">Découvrir les disponibilités</a>
+      </div>
+    </div>
+    <div class="hero-scroll">
+      <span data-lang-fr="Défiler" data-lang-en="Scroll">Défiler</span>
+      <i class="fas fa-chevron-down"></i>
+    </div>
+  </header>
+
+  <!-- ========== HÉBERGEMENTS & ÉVÉNEMENTS ========== -->
+  <section id="rooms" class="section">
+    <div class="container">
+      <h2 class="section-title" data-lang-fr="Nos hébergements d’exception" data-lang-en="Our exceptional accommodations">Nos hébergements d’exception</h2>
+
+      <!-- Événements -->
+      <div class="rooms-grid">
+        <!-- Anniversaire -->
+        <div class="room-card reveal">
+          <div class="room-img">
+            <img src="img/anniversaire.jpg" alt="Anniversaire" class="event-photo"
+                 onerror="this.onerror=null; this.parentNode.innerHTML='<div class=\'placeholder-img\'><i class=\'fas fa-birthday-cake\'></i></div>';">
+          </div>
+          <div class="room-info">
+            <h3 data-lang-fr="Anniversaire" data-lang-en="Birthday">Anniversaire</h3>
+            <p data-lang-fr="Fêtez un moment inoubliable dans un cadre élégant et chaleureux." data-lang-en="Celebrate an unforgettable moment in an elegant and warm setting.">Fêtez un moment inoubliable dans un cadre élégant et chaleureux.</p>
+            <span class="capacity"><i class="fas fa-users"></i> <span data-lang-fr="Jusqu'à 50 personnes" data-lang-en="Up to 50 people">Jusqu'à 50 personnes</span></span>
+          </div>
+        </div>
+
+        <!-- Réunion de famille -->
+        <div class="room-card reveal reverse">
+          <div class="room-img">
+            <img src="img/famille.jpg" alt="Réunion de famille" class="event-photo"
+                 onerror="this.onerror=null; this.parentNode.innerHTML='<div class=\'placeholder-img\'><i class=\'fas fa-users\'></i></div>';">
+          </div>
+          <div class="room-info">
+            <h3 data-lang-fr="Réunion de famille" data-lang-en="Family reunion">Réunion de famille</h3>
+            <p data-lang-fr="Rassemblez vos proches dans un espace convivial et spacieux." data-lang-en="Gather your loved ones in a friendly and spacious space.">Rassemblez vos proches dans un espace convivial et spacieux.</p>
+            <span class="capacity"><i class="fas fa-users"></i> <span data-lang-fr="Jusqu'à 50 personnes" data-lang-en="Up to 50 people">Jusqu'à 50 personnes</span></span>
+          </div>
+        </div>
+
+        <!-- Réunion professionnelle -->
+        <div class="room-card reveal">
+          <div class="room-img">
+            <img src="img/business.jpg" alt="Réunion professionnelle" class="event-photo"
+                 onerror="this.onerror=null; this.parentNode.innerHTML='<div class=\'placeholder-img\'><i class=\'fas fa-briefcase\'></i></div>';">
+          </div>
+          <div class="room-info">
+            <h3 data-lang-fr="Réunion professionnelle" data-lang-en="Business meeting">Réunion professionnelle</h3>
+            <p data-lang-fr="Un cadre prestigieux pour vos séminaires et réunions d’affaires." data-lang-en="A prestigious setting for your seminars and business meetings.">Un cadre prestigieux pour vos séminaires et réunions d’affaires.</p>
+            <span class="capacity"><i class="fas fa-briefcase"></i> <span data-lang-fr="Équipements pro" data-lang-en="Pro equipment">Équipements pro</span></span>
+          </div>
+        </div>
+
+        <!-- Célébration entre amis -->
+        <div class="room-card reveal reverse">
+          <div class="room-img">
+            <img src="img/celebration.jpg" alt="Célébration entre amis" class="event-photo"
+                 onerror="this.onerror=null; this.parentNode.innerHTML='<div class=\'placeholder-img\'><i class=\'fas fa-glass-cheers\'></i></div>';">
+          </div>
+          <div class="room-info">
+            <h3 data-lang-fr="Célébration entre amis" data-lang-en="Celebration with friends">Célébration entre amis</h3>
+            <p data-lang-fr="Organisez une fête mémorable avec piscine et espace barbecue." data-lang-en="Organize a memorable party with pool and barbecue area.">Organisez une fête mémorable avec piscine et espace barbecue.</p>
+            <span class="capacity"><i class="fas fa-glass-cheers"></i> <span data-lang-fr="Ambiance festive" data-lang-en="Festive atmosphere">Ambiance festive</span></span>
+          </div>
+        </div>
+
+        <!-- Moment de détente -->
+        <div class="room-card reveal">
+          <div class="room-img">
+            <img src="img/detente.jpg" alt="Moment de détente" class="event-photo"
+                 onerror="this.onerror=null; this.parentNode.innerHTML='<div class=\'placeholder-img\'><i class=\'fas fa-spa\'></i></div>';">
+          </div>
+          <div class="room-info">
+            <h3 data-lang-fr="Moment de détente" data-lang-en="Relaxation moment">Moment de détente</h3>
+            <p data-lang-fr="Profitez du calme et du jardin pour une parenthèse bien-être." data-lang-en="Enjoy the calm and the garden for a well-being break.">Profitez du calme et du jardin pour une parenthèse bien-être.</p>
+            <span class="capacity"><i class="fas fa-spa"></i> <span data-lang-fr="Piscine & jardin" data-lang-en="Pool & garden">Piscine & jardin</span></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ========== SECTION CHAMBRES ========== -->
+      <h3 class="section-subtitle" data-lang-fr="Nos Chambres" data-lang-en="Our Rooms" style="margin-top: 5rem;">Nos Chambres</h3>
+      <div class="rooms-grid">
+        <!-- Suite Présidentielle -->
+        <div class="room-card reveal">
+          <div class="room-img">
+            <img src="img/chambre-presidentielle.jpg" alt="Suite Présidentielle" class="event-photo"
+                 onerror="this.onerror=null; this.parentNode.innerHTML='<div class=\'placeholder-img\'><i class=\'fas fa-crown\'></i></div>';">
+          </div>
+          <div class="room-info">
+            <h3 data-lang-fr="Suite Présidentielle" data-lang-en="Presidential Suite">Suite Présidentielle</h3>
+            <p data-lang-fr="Lit king‑size, balcon privé, vue panoramique sur le jardin tropical." data-lang-en="King-size bed, private balcony, panoramic view of the tropical garden.">Lit king‑size, balcon privé, vue panoramique sur le jardin tropical.</p>
+            <span class="capacity"><i class="fas fa-user"></i> <span data-lang-fr="2 adultes" data-lang-en="2 adults">2 adultes</span></span>
+          </div>
+        </div>
+        <!-- Chambre Deluxe -->
+        <div class="room-card reveal reverse">
+          <div class="room-img">
+            <img src="img/chambre-deluxe.jpg" alt="Chambre Deluxe" class="event-photo"
+                 onerror="this.onerror=null; this.parentNode.innerHTML='<div class=\'placeholder-img\'><i class=\'fas fa-star\'></i></div>';">
+          </div>
+          <div class="room-info">
+            <h3 data-lang-fr="Chambre Deluxe" data-lang-en="Deluxe Room">Chambre Deluxe</h3>
+            <p data-lang-fr="Décoration raffinée, grand lit, coin bureau, accès direct à la piscine." data-lang-en="Refined decoration, large bed, desk area, direct pool access.">Décoration raffinée, grand lit, coin bureau, accès direct à la piscine.</p>
+            <span class="capacity"><i class="fas fa-user"></i> <span data-lang-fr="2 adultes" data-lang-en="2 adults">2 adultes</span></span>
+          </div>
+        </div>
+        <!-- Chambre Confort -->
+        <div class="room-card reveal">
+          <div class="room-img">
+            <img src="img/chambre-confort.jpg" alt="Chambre Confort" class="event-photo"
+                 onerror="this.onerror=null; this.parentNode.innerHTML='<div class=\'placeholder-img\'><i class=\'fas fa-moon\'></i></div>';">
+          </div>
+          <div class="room-info">
+            <h3 data-lang-fr="Chambre Confort" data-lang-en="Comfort Room">Chambre Confort</h3>
+            <p data-lang-fr="Ambiance cosy, lit double, salle d’eau privative, idéale pour les courts séjours." data-lang-en="Cozy atmosphere, double bed, private bathroom, ideal for short stays.">Ambiance cosy, lit double, salle d’eau privative, idéale pour les courts séjours.</p>
+            <span class="capacity"><i class="fas fa-user"></i> <span data-lang-fr="2 adultes" data-lang-en="2 adults">2 adultes</span></span>
+          </div>
+        </div>
+        <!-- Suite Familiale -->
+        <div class="room-card reveal reverse">
+          <div class="room-img">
+            <img src="img/chambre-familiale.jpg" alt="Suite Familiale" class="event-photo"
+                 onerror="this.onerror=null; this.parentNode.innerHTML='<div class=\'placeholder-img\'><i class=\'fas fa-users\'></i></div>';">
+          </div>
+          <div class="room-info">
+            <h3 data-lang-fr="Suite Familiale" data-lang-en="Family Suite">Suite Familiale</h3>
+            <p data-lang-fr="Deux chambres communicantes, salon privé, parfait pour les familles." data-lang-en="Two connecting bedrooms, private lounge, perfect for families.">Deux chambres communicantes, salon privé, parfait pour les familles.</p>
+            <span class="capacity"><i class="fas fa-users"></i> <span data-lang-fr="4 personnes" data-lang-en="4 people">4 personnes</span></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== SERVICES ========== -->
+  <section id="services" class="section alt-bg">
+    <div class="container">
+      <h2 class="section-title" data-lang-fr="Services & équipements" data-lang-en="Services & amenities">Services & équipements</h2>
+      <div class="services-grid">
+        <div class="service-item reveal"><i class="fas fa-swimming-pool"></i><span data-lang-fr="Piscine privée" data-lang-en="Private pool">Piscine privée</span></div>
+        <div class="service-item reveal"><i class="fas fa-tree"></i><span data-lang-fr="Jardin arboré" data-lang-en="Wooded garden">Jardin arboré</span></div>
+        <div class="service-item reveal"><i class="fas fa-film"></i><span data-lang-fr="Cinéma privé" data-lang-en="Private cinema">Cinéma privé</span></div>
+        <div class="service-item reveal"><i class="fas fa-gamepad"></i><span data-lang-fr="Billard & Baby‑foot" data-lang-en="Billiards & Baby‑foot">Billard & Baby‑foot</span></div>
+        <div class="service-item reveal"><i class="fas fa-wifi"></i><span data-lang-fr="Wi‑Fi haut débit" data-lang-en="High-speed Wi‑Fi">Wi‑Fi haut débit</span></div>
+        <div class="service-item reveal"><i class="fas fa-parking"></i><span data-lang-fr="Parking sécurisé" data-lang-en="Secure parking">Parking sécurisé</span></div>
+        <div class="service-item reveal"><i class="fas fa-utensils"></i><span data-lang-fr="Cuisine équipée" data-lang-en="Equipped kitchen">Cuisine équipée</span></div>
+        <div class="service-item reveal"><i class="fas fa-birthday-cake"></i><span data-lang-fr="Événements privés" data-lang-en="Private events">Événements privés</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== GALERIE (slider manuel 5 photos) ========== -->
+  <section id="gallery" class="section">
+    <div class="container">
+      <h2 class="section-title" data-lang-fr="Galerie" data-lang-en="Gallery">Galerie</h2>
+      <div class="gallery-slider" id="gallerySlider">
+        <div class="gallery-slides" id="gallerySlides">
+          <div class="gallery-slide active">
+            <img src="img/galerie1.jpg" alt="Piscine" class="gallery-img"
+                 onerror="this.onerror=null; this.parentNode.innerHTML='<div class=\'placeholder-img gallery-trigger\' data-img=\'img/galerie1.jpg\'><i class=\'fas fa-swimming-pool\'></i> Piscine</div>';">
+          </div>
+          <div class="gallery-slide">
+            <img src="img/galerie2.jpg" alt="Jardin" class="gallery-img"
+                 onerror="this.onerror=null; this.parentNode.innerHTML='<div class=\'placeholder-img gallery-trigger\' data-img=\'img/galerie2.jpg\'><i class=\'fas fa-tree\'></i> Jardin</div>';">
+          </div>
+          <div class="gallery-slide">
+            <img src="img/galerie3.jpg" alt="Cinéma" class="gallery-img"
+                 onerror="this.onerror=null; this.parentNode.innerHTML='<div class=\'placeholder-img gallery-trigger\' data-img=\'img/galerie3.jpg\'><i class=\'fas fa-film\'></i> Cinéma</div>';">
+          </div>
+          <div class="gallery-slide">
+            <img src="img/galerie4.jpg" alt="Billard" class="gallery-img"
+                 onerror="this.onerror=null; this.parentNode.innerHTML='<div class=\'placeholder-img gallery-trigger\' data-img=\'img/galerie4.jpg\'><i class=\'fas fa-gamepad\'></i> Billard</div>';">
+          </div>
+          <div class="gallery-slide">
+            <img src="img/galerie5.jpg" alt="Chambre" class="gallery-img"
+                 onerror="this.onerror=null; this.parentNode.innerHTML='<div class=\'placeholder-img gallery-trigger\' data-img=\'img/galerie5.jpg\'><i class=\'fas fa-bed\'></i> Chambre</div>';">
+          </div>
+        </div>
+        <button class="gallery-prev" id="galleryPrev" aria-label="Précédent"><i class="fas fa-chevron-left"></i></button>
+        <button class="gallery-next" id="galleryNext" aria-label="Suivant"><i class="fas fa-chevron-right"></i></button>
+        <div class="gallery-dots" id="galleryDots">
+          <span class="dot active" data-index="0"></span>
+          <span class="dot" data-index="1"></span>
+          <span class="dot" data-index="2"></span>
+          <span class="dot" data-index="3"></span>
+          <span class="dot" data-index="4"></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== TÉMOIGNAGES ========== -->
+  <section id="testimonials" class="section alt-bg">
+    <div class="container">
+      <h2 class="section-title" data-lang-fr="Ils ont adoré leur séjour" data-lang-en="They loved their stay">Ils ont adoré leur séjour</h2>
+      <div class="testimonials-grid">
+        <div class="testimonial-card reveal">
+          <div class="avatar"><img src="img/clients/sophie.jpg" alt="Sophie M." onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2280%22 height=%2280%22%3E%3Ccircle cx=%2240%22 cy=%2240%22 r=%2240%22 fill=%22%234C565C%22/%3E%3Ctext x=%2240%22 y=%2252%22 text-anchor=%22middle%22 fill=%22white%22 font-size=%2228%22%3ES%3C/text%3E%3C/svg%3E'"></div>
+          <div class="stars">★★★★★</div>
+          <p class="testimonial-text" data-lang-fr="« Un lieu magique ! Encore plus beau que sur les photos. Le personnel est attentionné. »" data-lang-en="“A magical place! Even more beautiful than in the photos. The staff is attentive.”">« Un lieu magique ! Encore plus beau que sur les photos. Le personnel est attentionné. »</p>
+          <span class="author">Sophie M.</span>
+        </div>
+        <div class="testimonial-card reveal">
+          <div class="avatar"><img src="img/clients/luc.jpg" alt="Luc R." onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2280%22 height=%2280%22%3E%3Ccircle cx=%2240%22 cy=%2240%22 r=%2240%22 fill=%22%234C565C%22/%3E%3Ctext x=%2240%22 y=%2252%22 text-anchor=%22middle%22 fill=%22white%22 font-size=%2228%22%3EL%3C/text%3E%3C/svg%3E'"></div>
+          <div class="stars">★★★★★</div>
+          <p class="testimonial-text" data-lang-fr="« Idéal pour un séminaire. Les espaces sont parfaits, le cinéma et le billard au top ! »" data-lang-en="“Perfect for a seminar. The spaces are perfect, the cinema and billiards are great!”">« Idéal pour un séminaire. Les espaces sont parfaits, le cinéma et le billard au top ! »</p>
+          <span class="author">Luc R.</span>
+        </div>
+        <div class="testimonial-card reveal">
+          <div class="avatar"><img src="img/clients/aina.jpg" alt="Aina T." onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2280%22 height=%2280%22%3E%3Ccircle cx=%2240%22 cy=%2240%22 r=%2240%22 fill=%22%234C565C%22/%3E%3Ctext x=%2240%22 y=%2252%22 text-anchor=%22middle%22 fill=%22white%22 font-size=%2228%22%3EA%3C/text%3E%3C/svg%3E'"></div>
+          <div class="stars">★★★★★</div>
+          <p class="testimonial-text" data-lang-fr="« Un havre de paix en pleine ville. Piscine et jardin splendides. Nous reviendrons ! »" data-lang-en="“A haven of peace in the city. Splendid pool and garden. We will come back!”">« Un havre de paix en pleine ville. Piscine et jardin splendides. Nous reviendrons ! »</p>
+          <span class="author">Aina T.</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== RÉSERVATION ========== -->
+  <section id="booking" class="section">
+    <div class="container">
+      <h2 class="section-title" data-lang-fr="Prêt à vivre l’expérience ?" data-lang-en="Ready to live the experience?">Prêt à vivre l’expérience ?</h2>
+      <div class="booking-actions">
+        <div class="booking-card reveal">
+          <i class="fas fa-calendar-check"></i>
+          <h3 data-lang-fr="Vérifier les disponibilités" data-lang-en="Check availability">Vérifier les disponibilités</h3>
+          <p data-lang-fr="Consultez le calendrier et choisissez vos dates." data-lang-en="Check the calendar and choose your dates.">Consultez le calendrier et choisissez vos dates.</p>
+          <button class="btn btn-gold open-modal" data-modal="availability" data-lang-fr="Voir le calendrier" data-lang-en="View calendar">Voir le calendrier</button>
+        </div>
+        <div class="booking-card reveal">
+          <i class="fas fa-concierge-bell"></i>
+          <h3 data-lang-fr="Réserver maintenant" data-lang-en="Book now">Réserver maintenant</h3>
+          <p data-lang-fr="Remplissez le formulaire pour réserver." data-lang-en="Fill in the form to book.">Remplissez le formulaire pour réserver.</p>
+          <button class="btn btn-gold open-modal" data-modal="booking" data-lang-fr="Je réserve" data-lang-en="I book">Je réserve</button>
+        </div>
+        <div class="booking-card reveal contact-card">
+          <i class="fas fa-envelope"></i>
+          <h3 data-lang-fr="Nous contacter" data-lang-en="Contact us">Nous contacter</h3>
+          <div class="contact-icons">
+            <a href="mailto:villafotsy.sc@gmail.com" class="contact-icon" aria-label="Email">
+              <i class="fas fa-envelope"></i>
+              <span>villafotsy.sc@gmail.com</span>
+            </a>
+            <a href="tel:+261388029273" class="contact-icon" aria-label="Téléphone">
+              <i class="fas fa-phone-alt"></i>
+              <span>+261 38 80 292 73</span>
+            </a>
+            <a href="https://wa.me/261388029273" target="_blank" class="contact-icon" aria-label="WhatsApp">
+              <i class="fab fa-whatsapp"></i>
+              <span>WhatsApp</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== MODAL DISPONIBILITÉS ========== -->
+  <div class="modal-overlay" id="availabilityModal">
+    <div class="modal-content">
+      <button class="modal-close">&times;</button>
+      <h2 class="modal-title" data-lang-fr="Calendrier des disponibilités" data-lang-en="Availability calendar">Calendrier des disponibilités</h2>
+      <div class="availability-calendar">
+        <div class="calendar-grid" id="calendarGridAvailability"></div>
+        <p class="calendar-legend">
+          <span class="dot free"></span> <span data-lang-fr="Disponible" data-lang-en="Available">Disponible</span>
+          <span class="dot booked"></span> <span data-lang-fr="Complet" data-lang-en="Booked">Complet</span>
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== MODAL RÉSERVATION ========== -->
+  <div class="modal-overlay" id="bookingModal">
+    <div class="modal-content">
+      <button class="modal-close">&times;</button>
+      <h2 class="modal-title" data-lang-fr="Réservez votre séjour" data-lang-en="Book your stay">Réservez votre séjour</h2>
+      <form class="booking-form" id="bookingForm">
+        <div class="form-row">
+          <div class="form-group">
+            <label data-lang-fr="Arrivée" data-lang-en="Check-in">Arrivée</label>
+            <input type="date" id="bookCheckin" required>
+          </div>
+          <div class="form-group">
+            <label data-lang-fr="Départ" data-lang-en="Check-out">Départ</label>
+            <input type="date" id="bookCheckout" required>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label data-lang-fr="Personnes" data-lang-en="Guests">Personnes</label>
+            <select id="bookGuests">
+              <option>1</option><option>2</option><option>3</option><option>4</option><option>5+</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label data-lang-fr="Chambre" data-lang-en="Room">Chambre</label>
+            <select id="bookRoomType">
+              <option data-lang-fr="Suite Présidentielle" data-lang-en="Presidential Suite">Suite Présidentielle</option>
+              <option data-lang-fr="Chambre Deluxe" data-lang-en="Deluxe Room">Chambre Deluxe</option>
+              <option data-lang-fr="Chambre Confort" data-lang-en="Comfort Room">Chambre Confort</option>
+              <option data-lang-fr="Suite Familiale" data-lang-en="Family Suite">Suite Familiale</option>
+            </select>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-gold btn-full" data-lang-fr="Confirmer la réservation" data-lang-en="Confirm booking">Confirmer la réservation</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ========== LIGHTBOX GALERIE ========== -->
+  <div class="lightbox-overlay" id="lightbox">
+    <span class="lightbox-close">&times;</span>
+    <img src="" alt="Vue agrandie" id="lightboxImg">
+  </div>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="footer">
+    <div class="container footer-grid">
+      <div class="footer-info">
+        <h4>VILLA FOTSY</h4>
+        <address>
+          Soavimbahoaka Ampasapito<br>
+          Antananarivo, Madagascar
+        </address>
+        <div class="footer-icons">
+          <a href="tel:+261388029273" class="icon-circle phone-icon" aria-label="Téléphone"><i class="fas fa-phone-alt"></i></a>
+          <a href="https://wa.me/261388029273" target="_blank" class="icon-circle whatsapp-icon" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+          <a href="mailto:villafotsy.sc@gmail.com" class="icon-circle email-icon" aria-label="Email"><i class="fas fa-envelope"></i></a>
+          <a href="https://www.facebook.com/p/VILLA-FOTSY-villa-priv%C3%A9e-61560372336421/" target="_blank" class="icon-circle facebook-icon" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+          <a href="https://www.google.com/maps?q=-18.891742403723832,47.541647824612795" target="_blank" class="icon-circle map-icon" aria-label="Localisation"><i class="fas fa-map-marker-alt"></i></a>
+        </div>
+      </div>
+      <div class="footer-map">
+        <iframe
+          src="https://www.google.com/maps?q=-18.891742403723832,47.541647824612795&z=17&output=embed"
+          width="100%" height="220" style="border:0; border-radius:12px;" allowfullscreen="" loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade" title="Carte Villa Fotsy">
+        </iframe>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 Villa Fotsy · <span data-lang-fr="Tous droits réservés" data-lang-en="All rights reserved">Tous droits réservés</span> · <span data-lang-fr="Créé par" data-lang-en="Created by">Créé par</span> <strong>Koumo</strong></p>
+    </div>
+  </footer>
+
+  <button id="scrollTopBtn" class="scroll-top-btn" aria-label="Retour en haut"><i class="fas fa-arrow-up"></i></button>
+
+  <script src="js/script.js"></script>
+</body>
+</html>
